@@ -14,16 +14,16 @@ def handle(msg):
 
         print "Got Command : %s " %command
 	if command=="btc":
-			url= "https://www.google.co.in/search?q=bitcoin+to+inr"
+			url= "https://www.google.com.pk/search?q=bitcoin+to+pkr"
 			req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"}) 
 			con = urllib2.urlopen( req )
 			Text=con.read()
 			position=re.search("1 Bitcoin =",Text)
 			res = float(Text[position.end():position.end()+9])
-			axx = '1 BTC : '+str(res)+' INR'
+			axx = '1 BTC : '+str(res)+' PKR'
 			bot.sendMessage(chat_id,str(axx))
-	elif command == "coinsecure":
-			res = requests.get('https://api.coinsecure.in/v1/exchange/ticker')
+	elif command == "urdubit":
+			res = requests.get('https://api.blinktrade.com/api/v1/PKR/ticker?crypto_currency=BTC')
 			#print(res.text)
 			j = json.loads(res.text)
 			sell = j['message']['bid']
@@ -33,20 +33,20 @@ def handle(msg):
 			date_time = datetime.datetime.now()
 			datex = date_time.date()  # gives date
 			timex = date_time.time()  # gives time
-			xxx = "Time:"+str(timex.hour)+":"+str(timex.minute)+", BTC PRICE: "+str(sell)[0:6]+" INR "
+			xxx = "Time:"+str(timex.hour)+":"+str(timex.minute)+", BTC PRICE: "+str(sell)[0:6]+" PKR "
 			print stringsell
 			bot.sendMessage(chat_id,str(xxx))
 	elif command.startswith('notify'):
 		notes = command[6:]
 		print notes
 		while True:
-			url= "https://www.google.co.in/search?q=bitcoin+to+inr"
+			url= "https://www.google.com.pk/search?q=bitcoin+to+pkr"
 			req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"}) 
 			con = urllib2.urlopen( req )
 			Text=con.read()
 			position=re.search("1 Bitcoin =",Text)
 			res = float(Text[position.end():position.end()+9])
-			axx = '1 BTC : '+str(res)+' INR'
+			axx = '1 BTC : '+str(res)+' PKR'
 			sleep(60) # Every Minute Update # Please Note Need to edit this part FUXING BUG
 			if str(res) >= notes: 
 				bot.sendMessage("Notification Alert: ",str(axx))
